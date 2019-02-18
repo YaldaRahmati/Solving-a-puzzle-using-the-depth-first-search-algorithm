@@ -80,7 +80,7 @@ def depth_search(available_pieces, board, x, y, counter, row):
 
                 board = new_board                                     # Update the board
 
-                Locations = find_available_locations(board)           # Find next available location on new board
+                Locations = find_available_locations(board)           # Find next available location on the new board
                 x, y = Locations[row][0], Locations[row][1]
 
                 available_pieces.pop(count)                           # Remove P from the list of available pieces
@@ -92,23 +92,23 @@ def depth_search(available_pieces, board, x, y, counter, row):
                     return
 
             else:
-                if len(available_pieces) == count + 1:                 # If all of the pieces are tested at x, y
+                if len(available_pieces) == count + 1:                 # If all of the pieces are tested at location x, y
                     count = 0                                          # Start testing form the first remaining piece
 
-                    Locations = find_available_locations(board)        # Update the list available locations
+                    Locations = find_available_locations(board)        # Update the list of available locations
                     if row == len(Locations)-2:
                         print ("No solution for this branch!")
                     else:
                         row += 1
-                        x, y = Locations[row][0], Locations[row][1]    # Move to next available location if there is one
+                        x, y = Locations[row][0], Locations[row][1]    # Move to the next available location if there is one
                 else:
                     count += 1
 
         else:
-            if len(available_pieces) == count + 1:                     # If all of the pieces are tested at x, y
+            if len(available_pieces) == count + 1:                     # If all of the pieces are tested at location x, y
                 count = 0                                              # Start testing form the first remaining piece
 
-                Locations = find_available_locations(board)            # Update the list available locations
+                Locations = find_available_locations(board)            # Update the list of available locations
                 if row == len(Locations)-2:
                     print ("No solution for this branch!")
                     print ("Final board:")
@@ -118,7 +118,7 @@ def depth_search(available_pieces, board, x, y, counter, row):
                     return
                 else:
                     row += 1
-                    x, y = Locations[row][0], Locations[row][1]        # Move to next available location if there is one
+                    x, y = Locations[row][0], Locations[row][1]        # Move to the next available location if there is one
             else:
                 count += 1
 
@@ -150,20 +150,20 @@ for first_piece in [P1, P2, P3, P4, P5, P6, P7, P8, P9]:
     row = 0
     counter = 0
 
-    board = np.zeros((7, 7), dtype=np.int)                    # Define the board
+    board = np.zeros((7, 7), dtype=np.int)                     # Define the board
 
-    available_pieces = [P1, P2, P3, P4, P5, P6, P7, P8, P9]   # Define the available puzzle pieces
+    available_pieces = [P1, P2, P3, P4, P5, P6, P7, P8, P9]    # Define the available puzzle pieces
 
-    board = board + embed_piece(first_piece, x, y)            # Place the first piece on the board
+    board = board + embed_piece(first_piece, x, y)             # Place the first piece on the board (initial branches of tree)
 
     if valid_board(board, 2):
         Solution[0].append(first_piece)
         Solution[0].append((x,y))
 
-        Locations = find_available_locations(board)           # Find the list of available locations
+        Locations = find_available_locations(board)            # Find the list of available locations
         x, y = Locations[row][0], Locations[row][1]
 
-        available_pieces.pop(p_num)                           # Remove the first piece form the list of available pieces
+        available_pieces.pop(p_num)                            # Remove the first piece form the list of available pieces
 
     depth_search(available_pieces, board, x, y, counter, row)  # Find solution for the this first piece (branch)
 
