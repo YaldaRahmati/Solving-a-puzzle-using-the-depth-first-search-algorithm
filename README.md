@@ -1,5 +1,6 @@
 # Solving-a-puzzle-using-the-depth-first-search-algorithm
-Assignment 2- CSCE 625
+Assignment 2- CSCE 625:
+
 Here you can find my initial representation of the assembly puzzle problem for assignment 2. Please note that:
 - I haven't included the turning feature of the pieces yet.
 - I haven't considered the given location of the holes yet.
